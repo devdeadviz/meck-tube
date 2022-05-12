@@ -14,17 +14,14 @@
   padding: 0.5rem 1.5rem;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 1.5rem;
 }
 
 .sidebar-options:hover {
   cursor: pointer;
+  background-color: var(--primary-color-2);
 }
 
 .sidebar-icons {
-  font-size: 2rem;
-}
-
-.sidebar-option-text {
-  font-size: larger;
+  font-size: 1.5rem;
 }

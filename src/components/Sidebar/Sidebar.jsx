@@ -1,5 +1,7 @@
 import "./Sidebar.css";
-import { AiOutlineHome } from "react-icons/ai";
+import { AiOutlineHome, AiOutlineLike, AiOutlineHistory } from "react-icons/ai";
+import { RiPlayList2Line } from "react-icons/ri";
+import { MdOutlineWatchLater } from "react-icons/md";
 
 const Sidebar = () => {
   return (
@@ -10,20 +12,20 @@ const Sidebar = () => {
           <span className="sidebar-option-text">Home</span>
         </li>
         <li className="sidebar-options">
-          <AiOutlineHome className="sidebar-icons" />
-          <span className="sidebar-option-text">Home</span>
+          <RiPlayList2Line className="sidebar-icons" />
+          <span className="sidebar-option-text">Playlist</span>
         </li>
         <li className="sidebar-options">
-          <AiOutlineHome className="sidebar-icons" />
-          <span className="sidebar-option-text">Home</span>
+          <AiOutlineLike className="sidebar-icons" />
+          <span className="sidebar-option-text">Liked</span>
         </li>
         <li className="sidebar-options">
-          <AiOutlineHome className="sidebar-icons" />
-          <span className="sidebar-option-text">Home</span>
+          <MdOutlineWatchLater className="sidebar-icons" />
+          <span className="sidebar-option-text">Watch Later</span>
         </li>
         <li className="sidebar-options">
-          <AiOutlineHome className="sidebar-icons" />
-          <span className="sidebar-option-text">Home</span>
+          <AiOutlineHistory className="sidebar-icons" />
+          <span className="sidebar-option-text">History</span>
         </li>
       </ul>
     </aside>

@@ -1,7 +1,7 @@
 .sidebar-wrapper {
   margin-top: 4.7rem;
   background-color: var(--primary-color);
-  flex-basis: 15rem;
+  flex-basis: 45rem;
 }
 
 .sidebar-options-list {

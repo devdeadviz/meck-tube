@@ -3,3 +3,9 @@
   --primary-color-2: #293246;
   --secondary-color: #ffffffeb;
 }
+
+body {
+  background-color: var(--primary-color-2);
+  color: var(--white-color);
+  box-sizing: border-box;
+}

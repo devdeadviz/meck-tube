@@ -17,6 +17,7 @@ const Home = () => {
     <div className="home-wrapper">
       {videos.map(({ _id, duration, title, creator, view, uploadedOn }) => (
         <VideoCard
+          key={_id}
           _id={_id}
           duration={duration}
           title={title}

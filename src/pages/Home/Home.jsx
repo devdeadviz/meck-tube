@@ -1,7 +1,7 @@
 import "./Home.css";
 
 const Home = () => {
-  return <div></div>;
+  return <div className="home-wrapper"></div>;
 };
 
 export { Home };

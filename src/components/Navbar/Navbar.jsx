@@ -24,7 +24,7 @@ const Navbar = () => {
               <Link to="/login">
                 <button
                   type="button"
-                  class="btn btn-outline-primary login-btn m-2"
+                  className="btn btn-outline-primary login-btn m-2"
                 >
                   Login
                 </button>

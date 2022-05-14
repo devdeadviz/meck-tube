@@ -1,26 +1,24 @@
 import "./VideoCard.css";
 
-const VideoCard = () => {
+const VideoCard = ({ _id, duration, title, creator, view, uploadedOn }) => {
   return (
     <div className="vertical-card-wrapper videocard-wrapper">
       <div className="vertical-card-image-wrapper pos-rel">
         <img
           className="responsive-image videocard-thumbnail"
-          src={`https://i.ytimg.com/vi/lBqgXNu2kfE/hq720_live.jpg`}
+          src={`https://i.ytimg.com/vi/${_id}/hqdefault.jpg`}
           alt="Video Card Thumbnail"
         />
-        <div className="videocard-duration">15:10</div>
+        <div className="videocard-duration">{duration}</div>
       </div>
       <div className="vertical-card-header">
-        <p className="m-2">
-          Keychron K6 Wireless Bluetooth Mechanical Keyboard Review
-        </p>
+        <p className="m-2">{title}</p>
       </div>
       <div className="vertical-card-body videcard-body my-4 mx-2">
-        <small>Keychron K6</small>
+        <small>{creator}</small>
         <div>
-          <small>118K views</small>
-          <small>3 weeks ago</small>
+          <small>{view} views</small>
+          <small>{uploadedOn}</small>
         </div>
       </div>
     </div>

@@ -1,7 +1,8 @@
 .videocard-wrapper {
   width: 22rem;
   border: none;
-  margin: 1rem 0;
+  margin: 1rem;
+  cursor: pointer;
 }
 
 .videocard-thumbnail {

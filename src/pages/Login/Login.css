@@ -1,13 +1,5 @@
 .login-wrapper {
   margin: auto;
-  display: flex;
-  justify-content: center;
-}
-
-/* login Image Styles */
-
-.login-image {
-  width: 40%;
 }
 
 /* Card styles */
@@ -15,7 +7,7 @@
 .login-card-wrapper {
   height: fit-content;
   width: 25rem;
-  margin: 1rem;
+  margin-top: 8rem;
 }
 
 /* Input styles */

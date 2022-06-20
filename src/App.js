@@ -1,7 +1,7 @@
 import Mockman from "mockman-js";
 import { Route, Routes } from "react-router-dom";
 import { Navbar, Sidebar } from "./components";
-import { Home, Login } from "./pages";
+import { Home, Login, Signup } from "./pages";
 
 const App = () => {
   return (
@@ -12,6 +12,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
           <Route path="/mockman" element={<Mockman />} />
         </Routes>
       </div>

@@ -9,3 +9,7 @@ body {
   color: var(--white-color);
   box-sizing: border-box;
 }
+
+fieldset {
+  border: none;
+}

@@ -11,15 +11,14 @@ const Navbar = () => {
           className="navbar-logo"
         />
         <h1>
-          <a className="header-heading" href="../../../index.html">
+          <Link className="header-heading" to="/">
             MeckTube
-          </a>
+          </Link>
         </h1>
       </div>
       <div className="header__nav">
         <nav>
           <ul>
-            <li></li>
             <li>
               <Link to="/login">
                 <button

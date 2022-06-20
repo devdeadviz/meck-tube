@@ -1,14 +1,17 @@
 import { useState, useEffect } from "react";
 import { Chip, VideoCard } from "../../components";
-import { getVideos } from "../../services";
+import { getCategories, getVideos } from "../../services";
 import "./Home.css";
 
 const Home = () => {
   const [videos, setVideos] = useState([]);
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     (async () => {
       const { videos } = await getVideos();
+      const { categories } = await getCategories();
+      setCategories(categories);
       setVideos(videos);
     })();
   }, []);
@@ -16,7 +19,9 @@ const Home = () => {
   return (
     <div className="home-wrapper">
       <div className="home-category-wrapper flex">
-        <Chip chipText={"Hola Dola"} />
+        {categories.map((category) => (
+          <Chip key={category._id} chipText={category.categoryName} />
+        ))}
       </div>
       <div className="flex flexWrap flexJustifyCenter">
         {videos.map(({ _id, duration, title, creator, view, uploadedOn }) => (

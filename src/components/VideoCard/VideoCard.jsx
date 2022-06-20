@@ -6,7 +6,7 @@ const VideoCard = ({ _id, duration, title, creator, view, uploadedOn }) => {
       <div className="vertical-card-image-wrapper pos-rel">
         <img
           className="responsive-image videocard-thumbnail"
-          src={`https://i.ytimg.com/vi/${_id}/hqdefault.jpg`}
+          src={`https://i.ytimg.com/vi/${_id}/maxresdefault.jpg`}
           alt="Video Card Thumbnail"
         />
         <div className="videocard-duration">{duration}</div>

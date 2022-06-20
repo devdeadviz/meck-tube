@@ -18,7 +18,7 @@ const Home = () => {
 
   return (
     <div className="home-wrapper">
-      <div className="home-category-wrapper flex">
+      <div className="home-category-wrapper flex flexWrap">
         {categories.map((category) => (
           <Chip key={category._id} chipText={category.categoryName} />
         ))}

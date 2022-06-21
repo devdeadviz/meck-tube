@@ -1,7 +1,20 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { login } from "../../services";
 import "./Login.css";
 
 const Login = () => {
+  const [user, setUser] = useState({
+    email: "",
+    password: "",
+  });
+
+  const loginHandler = async (e, user) => {
+    e.preventDefault();
+    const response = await login(user);
+    console.log(response);
+  };
+
   return (
     <div className="login-wrapper">
       <div className="vertical-card-wrapper login-card-wrapper box-shadow">
@@ -9,7 +22,7 @@ const Login = () => {
           <h2 className="m-4 text-center">Login</h2>
         </div>
         <div className="vertical-card-body my-4 mx-3">
-          <form action="#">
+          <form action="submit">
             <label htmlFor="email-input" className="my-3 py-5">
               Email address
             </label>
@@ -18,6 +31,8 @@ const Login = () => {
               id="email-input"
               name="email"
               placeholder="kuldeep@gmail.com"
+              value={user.email}
+              onChange={(e) => setUser({ ...user, email: e.target.value })}
               required
             />
             <label htmlFor="password-input" className="my-3">
@@ -28,6 +43,8 @@ const Login = () => {
               id="password-input"
               name="name"
               placeholder="*********"
+              value={user.password}
+              onChange={(e) => setUser({ ...user, password: e.target.value })}
               required
             />
             <div className="form-options flex flexJustifyBetween flexAlignItemsCenter mt-3 mb-5">
@@ -45,10 +62,23 @@ const Login = () => {
                 Forgot your password?
               </Link>
             </div>
-            <button type="submit" className="btn btn-primary submit-btn">
+            <button
+              type="submit"
+              className="btn btn-primary submit-btn"
+              onClick={(e) => loginHandler(e, user)}
+            >
               Submit
             </button>
-            <button type="button" className="btn btn-primary submit-btn mt-4">
+            <button
+              type="button"
+              className="btn btn-primary submit-btn mt-4"
+              onClick={(e) =>
+                loginHandler(e, {
+                  email: "kuldeepgupta@gmail.com",
+                  password: "kuldeepgupta",
+                })
+              }
+            >
               Login as Guest
             </button>
           </form>

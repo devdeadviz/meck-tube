@@ -1,4 +1,5 @@
 import { createContext, useContext } from "react";
+import { authReducer } from "../reducers";
 
 const initialAuthValue = {
   authenticated: !!JSON.parse(localStorage.getItem("user")),

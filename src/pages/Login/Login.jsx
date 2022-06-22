@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../contexts";
 import { login } from "../../services";
 import "./Login.css";
 
@@ -9,10 +10,14 @@ const Login = () => {
     password: "",
   });
 
-  const loginHandler = async (e, user) => {
+  const { authDispatch } = useAuth();
+
+  const loginHandler = async (e, userObj) => {
     e.preventDefault();
-    const response = await login(user);
-    console.log(response);
+    const { foundUser: user, encodedToken } = await login(userObj);
+    authDispatch({ type: "AUTH_SUCCESS", payload: { user, encodedToken } });
+    localStorage.setItem("user", JSON.stringify(user));
+    localStorage.setItem("encodedToken", encodedToken);
   };
 
   return (

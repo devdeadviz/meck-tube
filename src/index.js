@@ -4,7 +4,7 @@ import "./index.css";
 import App from "./App";
 import { makeServer } from "./server";
 import { BrowserRouter as Router } from "react-router-dom";
-import { AuthProvider } from "./contextss";
+import { AuthProvider } from "./contexts";
 
 // Call make Server
 makeServer();

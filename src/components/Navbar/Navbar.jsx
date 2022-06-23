@@ -1,7 +1,18 @@
 import "./Navbar.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../contexts";
 
 const Navbar = () => {
+  const {
+    authState: { authenticated },
+  } = useAuth();
+  const navigate = useNavigate();
+
+  const logoutHandler = () => {
+    localStorage.clear();
+    navigate(0);
+  };
+
   return (
     <header className="header">
       <div className="header-wrapper">
@@ -20,14 +31,24 @@ const Navbar = () => {
         <nav>
           <ul>
             <li>
-              <Link to="/login">
+              {authenticated ? (
                 <button
                   type="button"
                   className="btn btn-outline-primary login-btn m-2"
+                  onClick={logoutHandler}
                 >
-                  Login
+                  Log Out
                 </button>
-              </Link>
+              ) : (
+                <Link to="/login">
+                  <button
+                    type="button"
+                    className="btn btn-outline-primary login-btn m-2"
+                  >
+                    Login
+                  </button>
+                </Link>
+              )}
             </li>
           </ul>
         </nav>

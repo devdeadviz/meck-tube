@@ -1,0 +1,27 @@
+.sidebar-wrapper {
+  margin-top: 4.7rem;
+  background-color: var(--primary-color);
+  flex-basis: 45rem;
+}
+
+.sidebar-options-list {
+  list-style: none;
+}
+
+.sidebar-options {
+  margin: 15px 0;
+  color: var(--white-color);
+  padding: 0.5rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.sidebar-options:hover {
+  cursor: pointer;
+  background-color: var(--primary-color-2);
+}
+
+.sidebar-icons {
+  font-size: 1.5rem;
+}

@@ -1,0 +1,11 @@
+.chip-wrapper {
+    width: max-content;
+    background-color: var(--primary-color);
+    margin: 1rem;
+    cursor: pointer;
+    border-radius: 50rem;
+}
+
+.chip-text {
+    padding: 1rem;
+}

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts";
 import { signup } from "../../services";
 import "./Signup.css";
@@ -14,6 +14,7 @@ const Signup = () => {
   });
 
   const { authDispatch } = useAuth();
+  const navigate = useNavigate();
 
   const signupHandler = async (e, userObj) => {
     e.preventDefault();
@@ -21,6 +22,7 @@ const Signup = () => {
     authDispatch({ type: "AUTH_SUCCESS", payload: { user, encodedToken } });
     localStorage.setItem("user", JSON.stringify(user));
     localStorage.setItem("encodedToken", encodedToken);
+    navigate("/");
   };
 
   return (

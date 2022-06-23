@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts";
 import { login } from "../../services";
 import "./Login.css";
@@ -11,6 +11,7 @@ const Login = () => {
   });
 
   const { authDispatch } = useAuth();
+  const navigate = useNavigate();
 
   const loginHandler = async (e, userObj) => {
     e.preventDefault();
@@ -18,6 +19,7 @@ const Login = () => {
     authDispatch({ type: "AUTH_SUCCESS", payload: { user, encodedToken } });
     localStorage.setItem("user", JSON.stringify(user));
     localStorage.setItem("encodedToken", encodedToken);
+    navigate("/");
   };
 
   return (

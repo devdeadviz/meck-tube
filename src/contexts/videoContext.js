@@ -1,4 +1,5 @@
 import { createContext, useContext, useReducer } from "react";
+import { videoReducer } from "../reducers";
 
 const initialVideoValue = {
   videos: [],
@@ -9,7 +10,10 @@ const initialVideoValue = {
 const VideoContext = createContext(initialVideoValue);
 
 const VideoProvider = ({ children }) => {
-  const [videoState, videoDispatch] = useReducer(() => {}, initialVideoValue);
+  const [videoState, videoDispatch] = useReducer(
+    videoReducer,
+    initialVideoValue
+  );
 
   return (
     <VideoContext.Provider value={{ videoState, videoDispatch }}>

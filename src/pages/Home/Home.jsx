@@ -1,18 +1,23 @@
 import { useState, useEffect } from "react";
 import { Chip, VideoCard } from "../../components";
+import { useVideoData } from "../../contexts";
 import { getCategories, getVideos } from "../../services";
 import "./Home.css";
 
 const Home = () => {
-  const [videos, setVideos] = useState([]);
   const [categories, setCategories] = useState([]);
+
+  const {
+    videoState: { videos },
+    videoDispatch,
+  } = useVideoData();
 
   useEffect(() => {
     (async () => {
       const { videos } = await getVideos();
       const { categories } = await getCategories();
       setCategories(categories);
-      setVideos(videos);
+      videoDispatch({ type: "ADD_VIDEOS", payload: videos });
     })();
   }, []);
 

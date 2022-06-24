@@ -1,26 +1,12 @@
-import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Chip, VideoCard } from "../../components";
 import { useVideoData } from "../../contexts";
-import { getCategories, getVideos } from "../../services";
 import "./Home.css";
 
 const Home = () => {
-  const [categories, setCategories] = useState([]);
-
   const {
-    videoState: { videos },
-    videoDispatch,
+    videoState: { videos, categories },
   } = useVideoData();
-
-  useEffect(() => {
-    (async () => {
-      const { videos } = await getVideos();
-      const { categories } = await getCategories();
-      setCategories(categories);
-      videoDispatch({ type: "ADD_VIDEOS", payload: videos });
-    })();
-  }, []);
 
   return (
     <div className="home-wrapper">

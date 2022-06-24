@@ -1,26 +1,32 @@
 import "./SingleVideoPage.css";
 import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
 import { MdOutlineWatchLater, MdPlaylistAdd } from "react-icons/md";
+import { useParams } from "react-router-dom";
+import { useVideoData } from "../../contexts";
 
 const SingleVideoPage = () => {
-  const video = {};
+  const { videoId } = useParams();
+  const {
+    videoState: { videos },
+  } = useVideoData()
+  const video = videos.find((singleVideo) => singleVideo._id === videoId);
 
   return (
     <div className="single-video-page-wrapper">
       <iframe
         className="video-player"
-        src={`https://www.youtube.com/embed/${video._id}`}
+        src={`https://www.youtube.com/embed/${videoId}`}
         title="YouTube video player"
         frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen
       ></iframe>
       <div className="single-video-data">
-        <h2 className="single-video-heading">{video.title}</h2>
+        <h2 className="single-video-heading">{video?.title}</h2>
         <div className="single-video-sub-heading">
           <div>
-            <small>{video.view} | </small>
-            <small>{video.uploadedOn}</small>
+            <small>{video?.view} | </small>
+            <small>{video?.uploadedOn}</small>
           </div>
           <ul className="single-video-options-list">
             <li>
@@ -41,8 +47,8 @@ const SingleVideoPage = () => {
             </li>
           </ul>
         </div>
-        <h3 className="single-video-title">{video.creator}</h3>
-        <p className="single-video-description">{video.description}</p>
+        <h3 className="single-video-title">{video?.creator}</h3>
+        <p className="single-video-description">{video?.description}</p>
       </div>
     </div>
   );

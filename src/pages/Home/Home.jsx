@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Chip, VideoCard } from "../../components";
 import { useVideoData } from "../../contexts";
 import { getCategories, getVideos } from "../../services";
@@ -30,15 +31,16 @@ const Home = () => {
       </div>
       <div className="flex flexWrap flexJustifyCenter">
         {videos.map(({ _id, duration, title, creator, view, uploadedOn }) => (
-          <VideoCard
-            key={_id}
-            _id={_id}
-            duration={duration}
-            title={title}
-            creator={creator}
-            view={view}
-            uploadedOn={uploadedOn}
-          />
+          <Link className="text-decoration-none" to={`/video/${_id}`} key={_id}>
+            <VideoCard
+              _id={_id}
+              duration={duration}
+              title={title}
+              creator={creator}
+              view={view}
+              uploadedOn={uploadedOn}
+            />
+          </Link>
         ))}
       </div>
     </div>

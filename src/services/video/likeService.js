@@ -4,9 +4,13 @@ const HEADERS = { authorization: localStorage.getItem("encodedToken") };
 
 const likeVideo = async (video) => {
   try {
-    const { data } = await axios.post("/api/user/likes", video, {
-      headers: HEADERS,
-    });
+    const { data } = await axios.post(
+      "/api/user/likes",
+      { video },
+      {
+        headers: HEADERS,
+      }
+    );
     return data;
   } catch (error) {
     console.error(error.response.data);

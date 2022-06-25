@@ -3,13 +3,20 @@ import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
 import { MdOutlineWatchLater, MdPlaylistAdd } from "react-icons/md";
 import { useParams } from "react-router-dom";
 import { useVideoData } from "../../contexts";
+import { likeVideo } from "../../services";
 
 const SingleVideoPage = () => {
   const { videoId } = useParams();
   const {
     videoState: { videos },
-  } = useVideoData()
+    videoDispatch,
+  } = useVideoData();
   const video = videos.find((singleVideo) => singleVideo._id === videoId);
+
+  const likeVideoHandler = async (videoObj) => {
+    const { likes } = await likeVideo(videoObj);
+    videoDispatch({ type: "ADD_LIKED_VIDEOS", payload: likes });
+  };
 
   return (
     <div className="single-video-page-wrapper">
@@ -29,7 +36,7 @@ const SingleVideoPage = () => {
             <small>{video?.uploadedOn}</small>
           </div>
           <ul className="single-video-options-list">
-            <li>
+            <li onClick={() => likeVideoHandler(video)}>
               <AiOutlineLike className="single-video-icons" />
               <span>Like</span>
             </li>

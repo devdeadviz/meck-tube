@@ -1,5 +1,5 @@
 import "./SingleVideoPage.css";
-import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
+import { AiOutlineLike, AiOutlineDislike, AiFillLike } from "react-icons/ai";
 import { MdOutlineWatchLater, MdPlaylistAdd } from "react-icons/md";
 import { useParams } from "react-router-dom";
 import { useVideoData } from "../../contexts";
@@ -8,7 +8,7 @@ import { likeVideo } from "../../services";
 const SingleVideoPage = () => {
   const { videoId } = useParams();
   const {
-    videoState: { videos },
+    videoState: { videos, likedVideos },
     videoDispatch,
   } = useVideoData();
   const video = videos.find((singleVideo) => singleVideo._id === videoId);
@@ -17,6 +17,11 @@ const SingleVideoPage = () => {
     const { likes } = await likeVideo(videoObj);
     videoDispatch({ type: "ADD_LIKED_VIDEOS", payload: likes });
   };
+
+  const isLikedVideo =
+    likedVideos.find((likedVideo) => likedVideo._id === videoId) === undefined
+      ? false
+      : true;
 
   return (
     <div className="single-video-page-wrapper">
@@ -36,10 +41,17 @@ const SingleVideoPage = () => {
             <small>{video?.uploadedOn}</small>
           </div>
           <ul className="single-video-options-list">
-            <li onClick={() => likeVideoHandler(video)}>
-              <AiOutlineLike className="single-video-icons" />
-              <span>Like</span>
-            </li>
+            {isLikedVideo ? (
+              <li>
+                <AiFillLike className="single-video-icons" />
+                <span>Liked</span>
+              </li>
+            ) : (
+              <li onClick={() => likeVideoHandler(video)}>
+                <AiOutlineLike className="single-video-icons" />
+                <span>Like</span>
+              </li>
+            )}
             <li>
               <AiOutlineDislike className="single-video-icons" />
               <span>Dislike</span>

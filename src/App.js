@@ -1,7 +1,7 @@
 import Mockman from "mockman-js";
 import { Route, Routes } from "react-router-dom";
 import { Navbar, Sidebar } from "./components";
-import { Home, Login, Signup, SingleVideoPage } from "./pages";
+import { Home, LikedPage, Login, Signup, SingleVideoPage } from "./pages";
 
 const App = () => {
   return (
@@ -15,6 +15,7 @@ const App = () => {
           <Route path="/signup" element={<Signup />} />
           <Route path="/mockman" element={<Mockman />} />
           <Route path="/video/:videoId" element={<SingleVideoPage />} />
+          <Route path="/liked" element={<LikedPage />} />
         </Routes>
       </div>
     </>

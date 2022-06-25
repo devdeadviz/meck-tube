@@ -2,31 +2,56 @@ import "./Sidebar.css";
 import { AiOutlineHome, AiOutlineLike, AiOutlineHistory } from "react-icons/ai";
 import { RiPlayList2Line } from "react-icons/ri";
 import { MdOutlineWatchLater } from "react-icons/md";
+import { NavLink } from "react-router-dom";
 
 const Sidebar = () => {
+  const getActiveSidebarStyle = ({ isActive }) => ({
+    backgroundColor: isActive ? "#293246" : "",
+  });
+
   return (
     <aside className="sidebar-wrapper">
       <ul className="sidebar-options-list">
-        <li className="sidebar-options">
+        <NavLink
+          className="text-decoration-none sidebar-options"
+          to="/"
+          style={getActiveSidebarStyle}
+        >
           <AiOutlineHome className="sidebar-icons" />
           <span className="sidebar-option-text">Home</span>
-        </li>
-        <li className="sidebar-options">
+        </NavLink>
+        <NavLink
+          className="text-decoration-none sidebar-options"
+          to="/playlists"
+          style={getActiveSidebarStyle}
+        >
           <RiPlayList2Line className="sidebar-icons" />
           <span className="sidebar-option-text">Playlist</span>
-        </li>
-        <li className="sidebar-options">
+        </NavLink>
+        <NavLink
+          className="text-decoration-none sidebar-options"
+          to="/liked"
+          style={getActiveSidebarStyle}
+        >
           <AiOutlineLike className="sidebar-icons" />
           <span className="sidebar-option-text">Liked</span>
-        </li>
-        <li className="sidebar-options">
+        </NavLink>
+        <NavLink
+          className="text-decoration-none sidebar-options"
+          to="/watchlater"
+          style={getActiveSidebarStyle}
+        >
           <MdOutlineWatchLater className="sidebar-icons" />
           <span className="sidebar-option-text">Watch Later</span>
-        </li>
-        <li className="sidebar-options">
+        </NavLink>
+        <NavLink
+          className="text-decoration-none sidebar-options"
+          to="/history"
+          style={getActiveSidebarStyle}
+        >
           <AiOutlineHistory className="sidebar-icons" />
           <span className="sidebar-option-text">History</span>
-        </li>
+        </NavLink>
       </ul>
     </aside>
   );

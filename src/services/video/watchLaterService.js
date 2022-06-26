@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const HEADERS = { authorization: localStorage.getItem("encodedTokens") };
+const HEADERS = { authorization: localStorage.getItem("encodedToken") };
 
 const addVideoToWatchLater = async (video) => {
   try {

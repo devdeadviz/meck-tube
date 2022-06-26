@@ -1,14 +1,23 @@
 import "./SingleVideoPage.css";
 import { AiOutlineLike, AiOutlineDislike, AiFillLike } from "react-icons/ai";
-import { MdOutlineWatchLater, MdPlaylistAdd } from "react-icons/md";
+import {
+  MdOutlineWatchLater,
+  MdPlaylistAdd,
+  MdWatchLater,
+} from "react-icons/md";
 import { useParams } from "react-router-dom";
 import { useVideoData } from "../../contexts";
-import { deleteLikeVideo, likeVideo } from "../../services";
+import {
+  addVideoToWatchLater,
+  deleteLikeVideo,
+  deleteVideoFromWatchLater,
+  likeVideo,
+} from "../../services";
 
 const SingleVideoPage = () => {
   const { videoId } = useParams();
   const {
-    videoState: { videos, likedVideos },
+    videoState: { videos, likedVideos, watchLaterVideos },
     videoDispatch,
   } = useVideoData();
   const video = videos.find((singleVideo) => singleVideo._id === videoId);
@@ -25,6 +34,23 @@ const SingleVideoPage = () => {
 
   const isLikedVideo =
     likedVideos.find((likedVideo) => likedVideo._id === videoId) === undefined
+      ? false
+      : true;
+
+  const addVideoToWatchLaterHandler = async (videoObj) => {
+    const { watchlater } = await addVideoToWatchLater(videoObj);
+    videoDispatch({ type: "ADD_WATCH_LATER_VIDEOS", payload: watchlater });
+  };
+
+  const removeVideoFromWatchLaterHandler = async (videoId) => {
+    const { watchlater } = await deleteVideoFromWatchLater(videoId);
+    videoDispatch({ type: "ADD_WATCH_LATER_VIDEOS", payload: watchlater });
+  };
+
+  const isPresentInWatchLater =
+    watchLaterVideos.find(
+      (watchLaterVideo) => watchLaterVideo._id === videoId
+    ) === undefined
       ? false
       : true;
 
@@ -61,10 +87,18 @@ const SingleVideoPage = () => {
               <AiOutlineDislike className="single-video-icons" />
               <span>Dislike</span>
             </li>
-            <li>
-              <MdOutlineWatchLater className="single-video-icons" />
-              <span>Add to Watch later</span>
-            </li>
+            {isPresentInWatchLater ? (
+              <li onClick={() => removeVideoFromWatchLaterHandler(video._id)}>
+                <MdWatchLater className="single-video-icons" />
+                <span>Added to Watch later</span>
+              </li>
+            ) : (
+              <li onClick={() => addVideoToWatchLaterHandler(video)}>
+                <MdOutlineWatchLater className="single-video-icons" />
+                <span>Add to Watch later</span>
+              </li>
+            )}
+
             <li>
               <MdPlaylistAdd className="single-video-icons" />
               <span>Add to playlists</span>

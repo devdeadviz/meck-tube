@@ -7,3 +7,8 @@ export {
   addVideoToWatchLater,
   deleteVideoFromWatchLater,
 } from "./video/watchLaterService";
+export {
+  addVideoInHistory,
+  deleteVideoFromHistory,
+  clearHistory,
+} from "./video/historyService";

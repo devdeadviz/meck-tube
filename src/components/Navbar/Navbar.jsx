@@ -1,7 +1,18 @@
 import "./Navbar.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../contexts";
 
 const Navbar = () => {
+  const {
+    authState: { authenticated },
+  } = useAuth();
+  const navigate = useNavigate();
+
+  const logoutHandler = () => {
+    localStorage.clear();
+    navigate(0);
+  };
+
   return (
     <header className="header">
       <div className="header-wrapper">
@@ -11,24 +22,33 @@ const Navbar = () => {
           className="navbar-logo"
         />
         <h1>
-          <a className="header-heading" href="../../../index.html">
+          <Link className="header-heading" to="/">
             MeckTube
-          </a>
+          </Link>
         </h1>
       </div>
       <div className="header__nav">
         <nav>
           <ul>
-            <li></li>
             <li>
-              <Link to="/login">
+              {authenticated ? (
                 <button
                   type="button"
                   className="btn btn-outline-primary login-btn m-2"
+                  onClick={logoutHandler}
                 >
-                  Login
+                  Log Out
                 </button>
-              </Link>
+              ) : (
+                <Link to="/login">
+                  <button
+                    type="button"
+                    className="btn btn-outline-primary login-btn m-2"
+                  >
+                    Login
+                  </button>
+                </Link>
+              )}
             </li>
           </ul>
         </nav>

@@ -1,7 +1,8 @@
 .sidebar-wrapper {
   margin-top: 4.7rem;
   background-color: var(--primary-color);
-  flex-basis: 45rem;
+  min-width: 15rem;
+  min-height: calc(100vh - 71px);
 }
 
 .sidebar-options-list {

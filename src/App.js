@@ -2,6 +2,7 @@ import Mockman from "mockman-js";
 import { Route, Routes } from "react-router-dom";
 import { Navbar, Sidebar } from "./components";
 import {
+  HistoryPage,
   Home,
   LikedPage,
   Login,
@@ -24,6 +25,7 @@ const App = () => {
           <Route path="/video/:videoId" element={<SingleVideoPage />} />
           <Route path="/liked" element={<LikedPage />} />
           <Route path="/watchlater" element={<WatchLaterPage />} />
+          <Route path="/history" element={<HistoryPage />} />
         </Routes>
       </div>
     </>

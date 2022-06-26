@@ -8,11 +8,13 @@ import {
 import { useParams } from "react-router-dom";
 import { useVideoData } from "../../contexts";
 import {
+  addVideoInHistory,
   addVideoToWatchLater,
   deleteLikeVideo,
   deleteVideoFromWatchLater,
   likeVideo,
 } from "../../services";
+import { useEffect } from "react";
 
 const SingleVideoPage = () => {
   const { videoId } = useParams();
@@ -53,6 +55,14 @@ const SingleVideoPage = () => {
     ) === undefined
       ? false
       : true;
+
+  useEffect(() => {
+    (async () => {
+      const { history } = await addVideoInHistory(video);
+      videoDispatch({ type: "UPDATE_HISTORY", payload: history });
+    })();
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <div className="single-video-page-wrapper">

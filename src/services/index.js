@@ -3,3 +3,7 @@ export { getCategories } from "./video/getCategories";
 export { login } from "./auth/login";
 export { signup } from "./auth/signup";
 export { likeVideo, deleteLikeVideo } from "./video/likeService";
+export {
+  addVideoToWatchLater,
+  deleteVideoFromWatchLater,
+} from "./video/watchLaterService";

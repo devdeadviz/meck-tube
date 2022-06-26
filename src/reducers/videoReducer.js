@@ -8,6 +8,8 @@ const videoReducer = (state, action) => {
       return { ...state, likedVideos: action.payload };
     case "ADD_WATCH_LATER_VIDEOS":
       return { ...state, watchLaterVideos: action.payload };
+    case "UPDATE_HISTORY":
+      return { ...state, history: action.payload };
     default:
       return state;
   }

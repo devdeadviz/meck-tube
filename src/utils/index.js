@@ -1,0 +1,1 @@
+export { privateInstance } from "./axiosInstance";

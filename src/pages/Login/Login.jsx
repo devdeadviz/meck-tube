@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts";
 import { login } from "../../services";
+import { privateInstance } from "../../utils";
 import "./Login.css";
 
 const Login = () => {
@@ -19,6 +20,7 @@ const Login = () => {
     authDispatch({ type: "AUTH_SUCCESS", payload: { user, encodedToken } });
     localStorage.setItem("user", JSON.stringify(user));
     localStorage.setItem("encodedToken", encodedToken);
+    privateInstance.defaults.headers.authorization = encodedToken;
     navigate("/");
   };
 

@@ -1,14 +1,8 @@
-import axios from "axios";
-
-const HEADERS = { authorization: localStorage.getItem("encodedToken") };
+import { privateInstance } from "../../utils";
 
 const addVideoInHistory = async (video) => {
   try {
-    const { data } = await axios.post(
-      "/api/user/history",
-      { video },
-      { headers: HEADERS }
-    );
+    const { data } = await privateInstance.post("history", { video });
     return data;
   } catch (error) {
     console.error(error.response.error);
@@ -17,9 +11,7 @@ const addVideoInHistory = async (video) => {
 
 const deleteVideoFromHistory = async (videoId) => {
   try {
-    const { data } = await axios.delete(`/api/user/history/${videoId}`, {
-      headers: HEADERS,
-    });
+    const { data } = await privateInstance.delete(`history/${videoId}`);
     return data;
   } catch (error) {
     console.error(error.response.error);
@@ -28,9 +20,7 @@ const deleteVideoFromHistory = async (videoId) => {
 
 const clearHistory = async () => {
   try {
-    const { data } = await axios.delete("/api/user/history/all", {
-      headers: HEADERS,
-    });
+    const { data } = await privateInstance.delete("history/all");
     return data;
   } catch (error) {
     console.error(error.response.error);

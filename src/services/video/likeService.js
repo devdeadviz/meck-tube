@@ -1,16 +1,8 @@
-import axios from "axios";
-
-const HEADERS = { authorization: localStorage.getItem("encodedToken") };
+import { privateInstance } from "../../utils";
 
 const likeVideo = async (video) => {
   try {
-    const { data } = await axios.post(
-      "/api/user/likes",
-      { video },
-      {
-        headers: HEADERS,
-      }
-    );
+    const { data } = await privateInstance.post("likes", { video });
     return data;
   } catch (error) {
     console.error(error.response.data);
@@ -19,9 +11,7 @@ const likeVideo = async (video) => {
 
 const deleteLikeVideo = async (videoId) => {
   try {
-    const { data } = await axios.delete(`/api/user/likes/${videoId}`, {
-      headers: HEADERS,
-    });
+    const { data } = await privateInstance.delete(`likes/${videoId}`);
     return data;
   } catch (error) {
     console.error(error.response.data);

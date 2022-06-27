@@ -1,6 +1,7 @@
 import "./Navbar.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts";
+import { privateInstance } from "../../utils";
 
 const Navbar = () => {
   const {
@@ -9,6 +10,7 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const logoutHandler = () => {
+    privateInstance.defaults.headers.authorization = null;
     localStorage.clear();
     navigate(0);
   };

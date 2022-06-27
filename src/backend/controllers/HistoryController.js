@@ -54,16 +54,18 @@ export const addVideoToHistoryHandler = function (schema, request) {
       );
     }
     const { video } = JSON.parse(request.requestBody);
-    if (user.history.some((item) => item._id === video._id)) {
-      return new Response(
-        409,
-        {},
-        {
-          errors: ["The video is already in your history"],
-        }
-      );
-    }
-    user.history.push(video);
+    // if (user.history.some((item) => item._id === video._id)) {
+    //   return new Response(
+    //     409,
+    //     {},
+    //     {
+    //       errors: ["The video is already in your history"],
+    //     }
+    //   );
+    // }
+    const filteredHistory = user.history.filter(item => item.id !== video.id);
+    const newHistory = [video, ...filteredHistory]
+    this.db.users.update({ history: newHistory });
     return new Response(201, {}, { history: user.history });
   } catch (error) {
     return new Response(

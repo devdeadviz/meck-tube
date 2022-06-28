@@ -5,3 +5,4 @@ export { SingleVideoPage } from "./SingleVideoPage/SingleVideoPage.jsx";
 export { LikedPage } from "./LikedPage/LikedPage.jsx";
 export { WatchLaterPage } from "./WatchLaterPage/WatchLaterPage.jsx";
 export { HistoryPage } from "./HistoryPage/HistoryPage.jsx";
+export { Playlists } from "./Playlists/Playlists.jsx";

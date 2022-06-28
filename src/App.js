@@ -6,6 +6,7 @@ import {
   Home,
   LikedPage,
   Login,
+  Playlists,
   Signup,
   SingleVideoPage,
   WatchLaterPage,
@@ -26,6 +27,7 @@ const App = () => {
           <Route path="/liked" element={<LikedPage />} />
           <Route path="/watchlater" element={<WatchLaterPage />} />
           <Route path="/history" element={<HistoryPage />} />
+          <Route path="/playlists" element={<Playlists />} />
         </Routes>
       </div>
     </>

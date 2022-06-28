@@ -1,0 +1,10 @@
+.playlists-wrapper {
+  width: calc(100% - 225px);
+  margin-top: 5rem;
+}
+
+.create-playlist-btn {
+  display: flex;
+  margin-left: auto;
+  padding: 10px;
+}

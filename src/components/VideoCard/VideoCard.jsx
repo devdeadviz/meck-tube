@@ -5,10 +5,19 @@ import { MdOutlineWatchLater } from "react-icons/md";
 import { AiOutlineHistory } from "react-icons/ai";
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
+import { useVideoData } from "../../contexts";
+import { deleteVideoFromHistory } from "../../services";
 
 const VideoCard = ({ _id, duration, title, creator, view, uploadedOn }) => {
   const [showOptionModal, setShowOptionModal] = useState(false);
   const location = useLocation();
+
+  const { videoDispatch } = useVideoData();
+
+  const removeVideoFromHistoryHandler = async (videoId) => {
+    const { history } = await deleteVideoFromHistory(videoId);
+    videoDispatch({ type: "UPDATE_HISTORY", payload: history });
+  };
 
   return (
     <div className="vertical-card-wrapper videocard-wrapper">
@@ -40,7 +49,10 @@ const VideoCard = ({ _id, duration, title, creator, view, uploadedOn }) => {
             <small className="ml-2">Add to playlist</small>
           </div>
           {location.pathname === "/history" && (
-            <div className="flex flexAlignItemsCenter my-2">
+            <div
+              className="flex flexAlignItemsCenter my-2"
+              onClick={() => removeVideoFromHistoryHandler(_id)}
+            >
               <AiOutlineHistory />
               <small className="ml-2">Remove from history</small>
             </div>

@@ -2,7 +2,7 @@
   width: 22rem;
   border: none;
   margin: 1rem;
-  cursor: pointer;
+  position: relative;
 }
 
 .videocard-thumbnail {
@@ -19,11 +19,32 @@
   border-radius: 5px;
 }
 
-.videcard-body {
+.options-icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+  margin-left: auto;
+  cursor: pointer;
+}
+
+.options-card {
+  position: absolute;
+  top: 14.5rem;
+  left: 7rem;
+  background-color: var(--darker-color);
+  padding: 0.5rem 1rem;
+  width: 14rem;
+  flex-shrink: 0;
+}
+
+.options-card > div {
+  cursor: pointer;
+}
+
+.videocard-body {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.videcard-body > div > small {
+.videocard-body > div > small {
   margin: 0 5px;
 }

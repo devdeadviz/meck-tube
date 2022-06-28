@@ -1,0 +1,15 @@
+.history-page-wrapper {
+  width: calc(100% - 225px);
+  margin-top: 5rem;
+}
+
+.clear-history-btn {
+  display: flex;
+  margin-left: auto;
+  padding: 10px;
+}
+
+.history-videos-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}

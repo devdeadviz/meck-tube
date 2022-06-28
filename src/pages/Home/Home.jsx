@@ -1,20 +1,11 @@
-import { useState, useEffect } from "react";
 import { Chip, VideoCard } from "../../components";
-import { getCategories, getVideos } from "../../services";
+import { useVideoData } from "../../contexts";
 import "./Home.css";
 
 const Home = () => {
-  const [videos, setVideos] = useState([]);
-  const [categories, setCategories] = useState([]);
-
-  useEffect(() => {
-    (async () => {
-      const { videos } = await getVideos();
-      const { categories } = await getCategories();
-      setCategories(categories);
-      setVideos(videos);
-    })();
-  }, []);
+  const {
+    videoState: { videos, categories },
+  } = useVideoData();
 
   return (
     <div className="home-wrapper">

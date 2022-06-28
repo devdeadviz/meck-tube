@@ -1,0 +1,14 @@
+.playlist-card-wrapper {
+  width: 22rem;
+  margin: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 0;
+  padding: 1rem;
+}
+
+.playlist-delete-icon {
+  font-size: 2rem;
+  cursor: pointer;
+}

@@ -12,3 +12,9 @@ export {
   deleteVideoFromHistory,
   clearHistory,
 } from "./video/historyService";
+export {
+  createNewPlaylist,
+  deletePlaylist,
+  addNewVideoToPlaylist,
+  deleteVideoFromPlaylist,
+} from "./video/playlistsService";

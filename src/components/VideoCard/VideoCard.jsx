@@ -7,9 +7,11 @@ import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { useVideoData } from "../../contexts";
 import { deleteVideoFromHistory } from "../../services";
+import { PlaylistModal } from "../PlaylistModal/PlaylistModal";
 
 const VideoCard = ({ _id, duration, title, creator, view, uploadedOn }) => {
   const [showOptionModal, setShowOptionModal] = useState(false);
+  const [showPlaylistModal, setShowPlaylistModal] = useState(false);
   const location = useLocation();
 
   const { videoDispatch } = useVideoData();
@@ -17,6 +19,11 @@ const VideoCard = ({ _id, duration, title, creator, view, uploadedOn }) => {
   const removeVideoFromHistoryHandler = async (videoId) => {
     const { history } = await deleteVideoFromHistory(videoId);
     videoDispatch({ type: "UPDATE_HISTORY", payload: history });
+  };
+
+  const showPlaylistModalHandler = () => {
+    setShowPlaylistModal(true);
+    setShowOptionModal(false);
   };
 
   return (
@@ -44,7 +51,10 @@ const VideoCard = ({ _id, duration, title, creator, view, uploadedOn }) => {
             <MdOutlineWatchLater />
             <small className="ml-2">Add to watch later</small>
           </div>
-          <div className="flex flexAlignItemsCenter my-2">
+          <div
+            className="flex flexAlignItemsCenter my-2"
+            onClick={showPlaylistModalHandler}
+          >
             <RiPlayList2Line />
             <small className="ml-2">Add to playlist</small>
           </div>
@@ -66,6 +76,9 @@ const VideoCard = ({ _id, duration, title, creator, view, uploadedOn }) => {
           <small>{uploadedOn}</small>
         </div>
       </div>
+      {showPlaylistModal && (
+        <PlaylistModal setShowPlaylistModal={setShowPlaylistModal} />
+      )}
     </div>
   );
 };

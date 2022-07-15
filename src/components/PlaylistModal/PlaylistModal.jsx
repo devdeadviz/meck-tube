@@ -2,16 +2,22 @@ import "./PlaylistModal.css";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { useState } from "react";
 import { createNewPlaylist } from "../../services";
+import { useVideoData } from "../../contexts";
 
 const PlaylistModal = ({ setShowPlaylistModal }) => {
   const [showPlaylistInput, setShowPlaylistInput] = useState(false);
   const [playlistTitleInput, setPlaylistTitleInput] = useState("");
 
+  const {
+    videoState: { playlists },
+    videoDispatch,
+  } = useVideoData();
+
   const createNewPlaylistHandler = async (playlist) => {
     const { playlists } = await createNewPlaylist(playlist);
+    videoDispatch({ type: "CREATE_NEW_PLAYLIST", payload: playlists });
     setPlaylistTitleInput("");
     setShowPlaylistInput(false);
-    console.log("Playlist from server", playlists);
   };
 
   return (
@@ -26,22 +32,12 @@ const PlaylistModal = ({ setShowPlaylistModal }) => {
         </div>
         <div className="playlist-modal-body">
           <section className="playlists">
-            <label className="playlist-text">
-              <input type="checkbox" className="mr-2" />
-              Demo
-            </label>
-            <label className="playlist-text">
-              <input type="checkbox" className="mr-2" />
-              Demo
-            </label>
-            <label className="playlist-text">
-              <input type="checkbox" className="mr-2" />
-              Demo
-            </label>
-            <label className="playlist-text">
-              <input type="checkbox" className="mr-2" />
-              Demo
-            </label>
+            {playlists.map((playlist) => (
+              <label className="playlist-text" key={playlist._id}>
+                <input type="checkbox" className="mr-2" />
+                {playlist.title}
+              </label>
+            ))}
           </section>
           {showPlaylistInput && (
             <section className="playlist-input-wrapper">

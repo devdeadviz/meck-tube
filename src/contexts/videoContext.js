@@ -7,7 +7,8 @@ const initialVideoValue = {
   categories: [],
   likedVideos: [],
   watchLaterVideos: [],
-  history: []
+  history: [],
+  playlists: []
 };
 
 const VideoContext = createContext(initialVideoValue);

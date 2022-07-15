@@ -1,8 +1,10 @@
 import "./PlaylistModal.css";
 import { AiOutlineCloseCircle } from "react-icons/ai";
-import { IoCreateOutline } from "react-icons/io5";
+import { useState } from "react";
 
 const PlaylistModal = ({ setShowPlaylistModal }) => {
+  const [showPlaylistInput, setShowPlaylistInput] = useState(false);
+
   return (
     <div className="playlist-modal">
       <div className="playlist-modal-content">
@@ -32,18 +34,26 @@ const PlaylistModal = ({ setShowPlaylistModal }) => {
               Demo
             </label>
           </section>
-          <section className="playlist-input-wrapper">
-            <input
-              type="text"
-              className="text-input playlist-name-input my-0"
-              name="name"
-              placeholder="Enter the playlist name"
-            />
-            <IoCreateOutline className="playlist-modal-icon" />
-          </section>
-          <button type="button" className="btn btn-primary playlist-btn">
-            Create New Playlist
-          </button>
+          {showPlaylistInput && (
+            <section className="playlist-input-wrapper">
+              <input
+                type="text"
+                className="text-input playlist-name-input my-0"
+                name="name"
+                placeholder="Enter the playlist name"
+              />
+              <button type="button" class="btn btn-primary create-btn mx-2">Create</button>
+            </section>
+          )}
+          {!showPlaylistInput && (
+            <button
+              type="button"
+              className="btn btn-primary playlist-btn"
+              onClick={() => setShowPlaylistInput(true)}
+            >
+              Create New Playlist
+            </button>
+          )}
         </div>
       </div>
     </div>

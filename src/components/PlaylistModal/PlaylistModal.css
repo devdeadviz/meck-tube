@@ -66,6 +66,10 @@
   border: none;
 }
 
+.create-btn {
+  padding: 5px 6px;
+}
+
 .playlist-btn {
   padding: 10px;
   margin-top: 10px;
